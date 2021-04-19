@@ -14,7 +14,12 @@ import java.sql.SQLException;
 public class lab8 {
     public static void main(String[] args) throws SQLException {
    
-        DatabaseClient a=DatabaseClient.getInstance();
+        DatabaseClient client1=DatabaseClient.getInstance();
+  
+
+        MovieDAO movieDAO = new MovieDAO(client1);
+        //movieDAO.add (2,"whatever", "2020-06-22", 5, 3f);
+        
     }
      
 }

@@ -15,11 +15,10 @@ import java.sql.SQLException;
  */
 public class DatabaseClient {
     private static DatabaseClient single_instance = null;
+    Connection conn = null;
     
     private DatabaseClient() throws SQLException {
         String url = "jdbc:oracle:thin:@localhost:1521:xe";
-
-        Connection conn = null;
 
         try {
             conn = DriverManager.getConnection(url, "STUDENT", "STUDENT");
@@ -28,10 +27,15 @@ public class DatabaseClient {
         } finally {
             if (conn != null) {
                 System.out.println("Connected!");
-                conn.close();
+                //conn.close();
             }
         }
     }
+    
+    public Connection getConnection() {
+        return conn;
+    }
+    
      public static DatabaseClient getInstance() throws SQLException
     {
         if (single_instance == null)
