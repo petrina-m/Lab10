@@ -29,11 +29,22 @@ class ClientThread extends Thread {
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(socket.getInputStream()));
             String request = in.readLine();
-            // Send the response to the oputput stream: server → client
-            PrintWriter out = new PrintWriter(socket.getOutputStream());
-            String raspuns = "Hello " + request + "!";
-            out.println(raspuns);
-            out.flush();
+            
+            if(request.equals("stop"))
+            {
+                PrintWriter out = new PrintWriter(socket.getOutputStream());
+                out.println("Server stopped");
+                out.flush();
+            }
+            else
+            {
+                PrintWriter out = new PrintWriter(socket.getOutputStream());
+               String raspuns = "Server received the request " + request ;
+               out.println(raspuns);
+               out.flush();
+
+            }
+            
         } catch (IOException e) {
             System.err.println("Communication error... " + e);
         } finally {
