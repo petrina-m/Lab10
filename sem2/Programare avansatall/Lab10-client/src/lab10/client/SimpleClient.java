@@ -32,6 +32,7 @@ public class SimpleClient {
             Scanner scanner = new Scanner(System.in);
             String inputString;
             String response;
+            
             do{
              
               inputString = scanner.nextLine();
